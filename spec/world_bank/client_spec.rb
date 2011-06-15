@@ -2,11 +2,21 @@ require 'helper'
 
 describe WorldBank::Client do
 
-  context 'connection' do
-    
+  before do
+    @client = WorldBank::Client.new
+  end
+
+  context 'get' do
+    it 'returns the response from the specified path' do
+      stub_get('sources').
+        to_return(:status => 200, :body => 'good job')
+      @client.send(:get, 'sources').should eql 'good job'
+    end
+  end
+
+  context 'connection' do 
     it 'returns an instance of Faraday' do
-      client = WorldBank::Client.new
-      client.send(:connection).should be_a Faraday::Connection
+      @client.send(:connection).should be_a Faraday::Connection
     end
   end
 
