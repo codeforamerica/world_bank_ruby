@@ -1,0 +1,107 @@
+#
+# top level "reference" methods?
+#
+WorldBank.sources           # =>  ['Doing Business', 'Something Else'...] array of 16 sources of information the bank used
+WorldBank.income_levels     # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...} hash of 9 income levels the bank assigns
+WorldBank.income_level_ids  # =>  [ 'HIC', 'HPC'...]    too much?
+WorldBank.income_level_names #=>  ['High Income', 'Heavily Indebted Poor...'...]    probably too far....
+WorldBank.lending_types     # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of the 4 lending types
+WorldBank.lending_type_ids  # =>  [ 'IBD', 'IDA', 'IDB' 'NC' ]
+WorldBank.lending_type_names #=>  [ 'Not classified', 'Blend', ...]
+WorldBank.topics            # =>  the 18 high level topics that indicators are grouped into
+WorldBank.regions           # =>  not an api call... countries can grouped by lending_type, income_level, as well as region_code, region_codes are:
+#    EAP - (developing only)      East Asia & Pacific
+#    EAS - (all income levels)    ibid
+#    ECA - (developing only)      Europe & Central Asia
+#    ECS - (all income levels)    ibid
+#    LAC - (developing only)      Latin America & Caribbean
+#    LCN - (all income levels)    ibid
+#    MNA - (developing only)      Middle East & North Africa
+#    MEA - (all income levels)    ibid
+#    NAC                          North America
+#    SAS                          South Asia
+#    SSA - (developing only)      Sub-Saharan Africa
+#    SSF - (all income levels)    ibid
+#
+WorldBank.countries         # =>  same as Countries.all
+WorldBank.indicators        # =>  same as Indicators.all
+
+
+#
+# Topics
+#
+Topic.all
+@environment = Topic.find(6)
+@environment.id             # =>  6
+@environment.name           # =>  'Environment'
+@environment.note           # =>  'Natural and man-made environmental resources – fresh...'
+
+#
+# Countries
+#
+Country.all
+Country.each
+Country.each_page           # => too much? alias for Enumerable#each_slice?
+
+Country.find('br')
+Country.find('bra')
+
+@brazil = Country.find('brazil')
+@brazil.name                # =>  'Brazil'
+
+# only low and middle income countries are classified by region...
+#
+@brazil.region_id           # =>  'LCN'
+@brazil.region_value        # =>  'Latin America & Carribean (all income levels)'
+@brazil.region              # alias for .region_name
+
+# Major income levels the bank uses are:
+#  "low income"          =>  < $995
+#  "lower middle income" =>  $996 <=> $3945
+#  "upper middle income  =>  $3946 <=> $12195
+#  "high income"         =>  > $12196
+# though there are many others...
+#
+@brazil.income_level_id     # =>  'UMC'
+@brazil.income_level_value  # =>  'Upper middle income'
+@brazil.income_level        # alias for .income_level_value
+
+# countries can qualify for two different types of loans (3 labels):
+#  "International Bank for Reconstruction and Development" (IRBD)
+#  "International Development Association" (IDA)
+#  "Blended" (both)
+#  IDA loans have little to no interest and/or are grants, a country must be below $1165 to qualify
+#  Countries may also be of type "Blended" where their income is low enough for IDA, and their credit is high enough of IRBD.
+# see http://data.worldbank.org/about/country-classifications for more info
+#
+@brazil.lending_type_id     # =>  'IBD'
+@brazil.lending_type_value  # =>  'IBRD'
+@brazil.lending_type        # =>  'International Bank for Reconstruction and Development Qualified'
+@brazil.capital_city        # =>  'Brasilia'
+@brazil.capital             # alias for .capital_city
+@brazil.longitude           # =>  -47.9292
+@brazil.latitude            # =>  -15.7801
+@brazil.coords              # =>  [-15.7801, -47.9292]   ??? too much?
+
+
+#
+# Indicators
+#
+Indicators.all              # =>  begins paging through 4073 different indicators
+Indicators.each
+Indicators.each_page        # =>  too much? alias for Enumerable#each_slice ?
+
+@tractors = Indicator.find('AG.AGR.TRAC.NO')
+@tractors.id                # =>  'AG.AGR.TRAC.NO' because, you know, that's really helpful to know...
+@tractors.name              # =>  'Agricultural Machinery, tractors'
+@tractors.source            # =>  { id: 2, value: 'World Development Indicators' }
+@tractors.source_id         # =>  2
+@tractors.source_name       # =>  'World Development Indicators'
+
+# note the api docs say that source_note, topic_id, and topic_name are available for every record,
+# pull them down, they're wrong
+#
+@tractors.note              # =>  'Agricultural machinery refers to the number of....'
+@tractors.note?             # =>  true    note may be empty
+@tractors.source_organization #=> 'Food and Agriculture Organization, electronic files and web'
+@tractors.topics            # =>  [ { id: 1, value: 'Agricultural & Rural Development' } ] array of applicable topics (may be empty!)

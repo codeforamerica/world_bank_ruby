@@ -1,0 +1,11 @@
+
+Projects API
+
+search for everything:
+http://search.worldbank.org/api/projects?qterm=*:*&countrycode[]=AF&format=json&kw=N
+
+search for only the country afghanistan
+http://search.worldbank.org/api/projects?qterm=*:*&countrycode[]=AF&format=json&kw=N
+
+search for several countries:
+http://search.worldbank.org/api/projects?qterm=*:*&countrycode[]=AF&countrycode[]=DZ&countrycode[]=AS&format=json&kw=N
