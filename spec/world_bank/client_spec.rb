@@ -5,6 +5,12 @@ describe WorldBank::Client do
   before do
     @client = WorldBank::Client.new
   end
+  
+  context 'sources' do
+    it 'returns all of the sources for the world bank' do
+      
+    end
+  end
 
   context 'get' do
     it 'returns the response from the specified path' do
