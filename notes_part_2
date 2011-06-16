@@ -23,8 +23,9 @@ WorldBank.regions           # =>  not an api call... countries can grouped by le
 #    SSA - (developing only)      Sub-Saharan Africa
 #    SSF - (all income levels)    ibid
 #
-WorldBank.countries         # =>  same as Countries.all
-WorldBank.indicators        # =>  same as Indicators.all
+WorldBank.countries         # =>  same as Country.all
+WorldBank.indicators        # =>  same as Indicator.all
+WorldBank.topics            # =>  same as Topic.all
 
 
 #
