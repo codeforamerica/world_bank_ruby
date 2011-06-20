@@ -1,4 +1,4 @@
-require 'world_bank/client'
+require File.expand_path(File.join(File.dirname(__FILE__), '/world_bank/client'))
 
 module WorldBank
   
