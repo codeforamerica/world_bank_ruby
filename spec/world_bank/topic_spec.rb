@@ -2,6 +2,12 @@ require 'helper'
 
 describe WorldBank::Topic do
 
+  context 'client' do
+    it 'returns a new WorldBank::Client' do
+      client = WorldBank::Topic.client
+      client.should be_a WorldBank::Client
+    end
+  end
   context 'find' do
 
     it 'returns an instance of Topic' do
@@ -32,5 +38,4 @@ describe WorldBank::Topic do
       end      
     end
   end
-
 end
