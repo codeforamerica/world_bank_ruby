@@ -6,4 +6,5 @@ module WorldBank
       client.query[:dirs] = ['lendingTypes']
       client.get_query
     end
+  end
 end
