@@ -58,20 +58,20 @@ describe WorldBank::Client do
   
   context 'sources' do
     it 'returns all of the sources for the world bank' do
-      stub_get('sources').
+      stub_get('sources?format=json').
         to_return(:status => 200, :body => fixture('sources.json'))
       test = @client.sources
-      a_get('sources').should have_been_made
+      a_get('sources?format=json').should have_been_made
       test[0][:total].should eql '14'
     end
   end
 
   context 'get' do
     it 'returns the response from the specified path' do
-      stub_get('sources').
+      stub_get('sources?format=json').
         to_return(:status => 200, :body => fixture('sources.json'))
       test = @client.sources
-      a_get('sources').should have_been_made
+      a_get('sources?format=json').should have_been_made
       test[0][:total].should eql '14'
     end
   end
