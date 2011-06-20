@@ -5,17 +5,17 @@ describe WorldBank::Topic do
   context 'find' do
 
     it 'returns an instance of Topic' do
-      stub_get('topics/6').
+      stub_get('topics/6?format=json').
         to_return(:status => 200, :body => fixture('topic_6.json'))
       @environment = WorldBank::Topic.find(6)
-      a_get('topics/6').should have_been_made
+      a_get('topics/6?format=json').should have_been_made
       @environment.should be_a WorldBank::Topic
     end        
   
     context 'returned topic has' do
     
       before do
-        stub_get('topics/6').
+        stub_get('topics/6?format=json').
           to_return(:status => 200, :body => fixture('topic_6.json'))
         @environment = WorldBank::Topic.find(6)      
       end

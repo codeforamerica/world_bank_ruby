@@ -4,13 +4,18 @@ module WorldBank
   
     attr_reader :raw, :id, :name, :note
   
+    def self.client
+      @client ||= WorldBank::Client.new
+    end
+
     def self.all(client)
       client.query[:dirs] = ['topics']
       client.get_query
     end
     
     def self.find(id)
-      result = WorldBank::Client.new.get("topics/#{id}")
+      client.query[:dirs] = ['topics', id.to_s]
+      result = client.get_query
       new(result[1][0])
     end
     
