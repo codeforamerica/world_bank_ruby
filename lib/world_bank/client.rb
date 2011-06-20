@@ -22,23 +22,23 @@ module WorldBank
     end
 
     def income_levels
-      WorldBank::IncomeLevel.all
+      WorldBank::IncomeLevel.all(self)
     end
 
     def lending_types
-      WorldBank::LendingType.all
+      WorldBank::LendingType.all(self)
     end
 
     def countries
-      WorldBank::Country.all
+      WorldBank::Country.all(self)
     end
 
     def indicators
-      WorldBank::Indicator.all
+      WorldBank::Indicator.all(self)
     end  
 
     def topics
-      WorldBank::Topic.all
+      WorldBank::Topic.all(self)
     end    
 
     def get_query
