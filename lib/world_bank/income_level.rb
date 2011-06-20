@@ -2,8 +2,9 @@ module WorldBank
 
   class IncomeLevel
   
-    def self.all
-      WorldBank::Client.new.get('incomeLevels')
+    def self.all(client)
+      client.query[:dirs] = ['incomeLevels']
+      client.get_query
     end
   
   end

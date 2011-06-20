@@ -2,8 +2,9 @@ module WorldBank
 
   class Indicator
   
-    def self.all
-      WorldBank::Client.new.get('indicators')
+    def self.all(client)
+      client.query[:dirs] = ['indicators']
+      client.get_query
     end
   
   end

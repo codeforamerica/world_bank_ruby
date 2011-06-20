@@ -4,8 +4,9 @@ module WorldBank
   
     attr_reader :raw, :id, :name, :note
   
-    def self.all
-      WorldBank::Client.new.get('topics')
+    def self.all(client)
+      client.query[:dirs] = ['topics']
+      client.get_query
     end
     
     def self.find(id)

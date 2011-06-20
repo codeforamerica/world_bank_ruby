@@ -2,8 +2,9 @@ module WorldBank
 
   class Country
   
-    def self.all
-      WorldBank::Client.new.get('countries')
+    def self.all(client)
+      client.query[:dirs] = ['countries']
+      client.get_query
     end
   
   end

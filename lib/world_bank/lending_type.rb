@@ -2,10 +2,8 @@ module WorldBank
 
   class LendingType
   
-    def self.all
-      WorldBank::Client.new.get('lendingTypes')
+    def self.all(client)
+      client.query[:dirs] = ['lendingTypes']
+      client.get_query
     end
-  
-  end
-
 end
