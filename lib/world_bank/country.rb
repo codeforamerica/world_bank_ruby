@@ -2,7 +2,7 @@ module WorldBank
 
   class Country
   
-    attr_reader :raw, :name, :iso2_code, :iso3_code, :region, :income_level, :lending_type, :capital
+    attr_reader :raw, :name, :iso2_code, :iso3_code, :region, :income_level, :lending_type, :capital, :type
 
     def self.client
       @client ||= WorldBank::Client.new
@@ -28,6 +28,7 @@ module WorldBank
       @income_level = WorldBank::IncomeLevel.new(values['incomeLevel'])
       @lending_type = WorldBank::LendingType.new(values['lendingType'])
       @capital = values['capitalCity']
+      @type = 'countries'
     end
   end
 
