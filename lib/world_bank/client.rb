@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '/lending_type'))
 require File.expand_path(File.join(File.dirname(__FILE__), '/country'))
 require File.expand_path(File.join(File.dirname(__FILE__), '/indicator'))
 require File.expand_path(File.join(File.dirname(__FILE__), '/topic'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'region'))
 
 module WorldBank
   class Client
@@ -36,6 +37,10 @@ module WorldBank
     def indicators
       WorldBank::Indicator.all(self)
     end  
+
+    def regions
+      WorldBank::Region.all(self)
+    end
 
     def topics
       WorldBank::Topic.all(self)
