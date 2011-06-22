@@ -21,7 +21,7 @@ module WorldBank
     def initialize(values={})
       @raw = values
       @id = values['id']
-      @name = values['name']
+      @name = values['value']
       @code = values['code']
     end
   end

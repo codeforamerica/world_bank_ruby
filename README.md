@@ -11,50 +11,47 @@ Usage
 
 	require 'world_bank'
 
+  #
   # WorldBank will delegate to the client allowing top level look-ups of their catalog
-  WorldBank.sources           # =>  ['Doing Business', 'Something Else'...] array of 16 sources of information the bank used
-  WorldBank.income_levels     # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
-                              #       hash of 9 income levels the bank assigns
-	WorldBank.lending_types     # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of the 4 lending types
-  WorldBank.topics            # =>  the 18 high level topics that indicators are grouped into
-  WorldBank.regions           # =>  
-  WorldBank.countries         # =>  same as Country.all
-  WorldBank.indicators        # =>  same as Indicator.all
-  WorldBank.topics            # =>  same as Topic.all
-  
+  #
+  WorldBank.sources               # =>  ['Doing Business', 'Something Else'...] array of 16 sources of information the bank used
+  WorldBank.income_levels         # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
+                                  #       hash of 9 income levels the bank assigns
+	WorldBank.lending_types         # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of the 4 lending types
+  WorldBank.topics                # =>  the 18 high level topics that indicators are grouped into
+  WorldBank.regions               # =>
+  WorldBank.countries             # =>  same as Country.all
+  WorldBank.indicators            # =>  same as Indicator.all
+  WorldBank.topics                # =>  same as Topic.all
+
   #
   # Topics
   #
-  
-  Topic.all
   @environment = Topic.find(6)
-  @environment.id             # =>  6
-  @environment.name           # =>  'Environment'
-  @environment.note           # =>  'Natural and man-made environmental resources – fresh...'
+  @environment.id                 # =>  6
+  @environment.name               # =>  'Environment'
+  @environment.note               # =>  'Natural and man-made environmental resources – fresh...'
 
   #
   # Countries
   #
-  Country.all
-  Country.find('br')
-  Country.find('bra')
-
-  @brazil = Country.find('brazil')
-  @brazil.name                # =>  'Brazil'
+  @brazil = Country.find('br')
+  @brazil = Country.find('bra')
+  @brazil.name                    # =>  'Brazil'
   #
-  # only low and middle income countries are classified by region...
-  @brazil.region              # alias for .region_name
-  @brazil.capital             # =>  'Brasilia'
-  @brazil.captial_lon         # =>  -47.9292
-  @brazil.capital_lat         # =>  -15.7801
+  # note: only low and middle income countries are classified by region...
+  #
+  @brazil.region                  # =>  <WorldBank::Region @name="Latin America & Caribbean (all income levels)" ....>
+  @brazil.capital                 # =>  'Brasilia'
+  @brazil.lending_type            # => <WorldBank::LendingType>
 
   #
   # Indicators
   #
   @tractors = Indicator.find('AG.AGR.TRAC.NO')
-  @tractors.id                # =>  'AG.AGR.TRAC.NO' because, you know, that's really helpful to know...
-  @tractors.name              # =>  'Agricultural Machinery, tractors'
-  @tractors.source            # =>  { id: 2, value: 'World Development Indicators' }
+  @tractors.id                    # =>  'AG.AGR.TRAC.NO'
+  @tractors.name                  # =>  'Agricultural Machinery, tractors'
+  @tractors.source                # =>  { id: 2, value: 'World Development Indicators' }
 
 ```
 

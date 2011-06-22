@@ -78,10 +78,10 @@ Country.find('bra')
 @brazil.lending_type_id     # =>  'IBD'
 @brazil.lending_type_value  # =>  'IBRD'
 @brazil.lending_type        # =>  'International Bank for Reconstruction and Development Qualified'
-@brazil.capital_city        # =>  'Brasilia'
+@brazil.capital             # =>  'Brasilia'
 @brazil.capital             # alias for .capital_city
-@brazil.longitude           # =>  -47.9292
-@brazil.latitude            # =>  -15.7801
+@brazil.captial_lon         # =>  -47.9292
+@brazil.capital_lat         # =>  -15.7801
 @brazil.coords              # =>  [-15.7801, -47.9292]   ??? too much?
 
 
