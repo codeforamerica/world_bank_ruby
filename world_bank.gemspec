@@ -4,11 +4,11 @@ require File.expand_path('../lib/world_bank/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name        = 'world_bank'
   gem.version     = WorldBank::VERSION
-  gem.author      = ["Justin Stoller", "Code for America - DevTools"]
+  gem.author      = 'Code for America - DevTools'
   gem.email       = 'info@codeforamerica.org'
-  gem.homepage    = ''
-  gem.summary     = %q{TODO: Write a gem summary}
-  gem.description = %q{TODO: Write a gem description}
+  gem.homepage    = 'https://github.com/codeforamerica/world_bank_ruby'
+  gem.summary     = %q{A Ruby wrapper around the World Bank's Development Indicators API}
+  gem.description = %q{A Ruby wrapper around the World Bank's Development Indicators API}
 
   gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
