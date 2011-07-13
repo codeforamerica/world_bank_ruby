@@ -78,12 +78,37 @@ describe WorldBank::Query do
     end
   end
   context 'lending types' do
-    it 'converts an array LendingType class to a params' do
+    it 'accepts a single LendingType as param' do
       @query = WorldBank::Query::Base::Countries.new(@country)
       @client = @query.instance_variable_get :@client
       @lending_type = WorldBank::LendingType.new({"id" => "IDB","value" => "Blend"})
       @query.lending_types(@lending_type)
-      @client.query[:params].should eql({:format => 'json', :lendingTypes => 'idb'})
+      @client.query[:params].should eql({:format => 'json', :lendingTypes => 'IDB'})
+    end
+    it 'converts an array of LendingTypes to a param' do
+      @query = WorldBank::Query::Base::Countries.new(@country)
+      @client = @query.instance_variable_get :@client
+      @lending_type = WorldBank::LendingType.new({"id" => "IDB","value" => "Blend"})
+      @other_type = @lending_type.dup
+      @query.lending_types([@other_type, @lending_type])
+      @client.query[:params].should eql({:format => 'json', :lendingTypes => 'IDB;IDB'})
+    end
+  end
+  context 'income levels' do
+    it 'accepts a single IncomeLevels as param' do
+      @query = WorldBank::Query::Base::Countries.new(@country)
+      @client = @query.instance_variable_get :@client
+      @income_level = WorldBank::IncomeLevel.new({"id" => "LMC","value" => "Lower middle income"})
+      @query.income_levels(@income_level)
+      @client.query[:params].should eql({:format => 'json', :incomeLevels => 'LMC'})
+    end
+    it 'converts an array of IncomeLevels to a param' do
+      @query = WorldBank::Query::Base::Countries.new(@country)
+      @client = @query.instance_variable_get :@client
+      @income_level = WorldBank::IncomeLevel.new({"id" => "LMC","value" => "Lower middle income"})
+      @other_type = @income_level.dup
+      @query.income_levels([@other_type, @income_level])
+      @client.query[:params].should eql({:format => 'json', :incomeLevels => 'LMC;LMC'})
     end
   end
 end

@@ -69,15 +69,21 @@ module WorldBank
       
       class Countries
         
+        def initialize(model)
+          @model = model
+          @client = WorldBank::Client.new
+          @client.query[:dirs] << 'countries'
+        end
+
         def lending_types(lend_type)
-          parsed_array = lend_type.is_a?(Array) ? lend_type.map(&:id).join(';') : "lendingTypes=#{lend_type.id}"
+          parsed_array = lend_type.is_a?(Array) ? lend_type.map(&:id).join(';') : lend_type.id
           @client.query[:params][:lendingTypes] = parsed_array
           self
         end
         
-        def income_level(income_level)
-          parsed_array = income_type.map(&:id).join(';')
-          @client.query[:params][:incomeLevel] = parsed_array
+        def income_levels(income_levels)
+          parsed_array = income_levels.is_a?(Array) ? income_levels.map(&:id).join(';') : income_levels.id
+          @client.query[:params][:incomeLevels] = parsed_array
           self
         end
         
