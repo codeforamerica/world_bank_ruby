@@ -1,7 +1,7 @@
 module WorldBank
   class Region
 
-    attr_reader :raw, :id, :name, :code
+    attr_reader :raw, :id, :name, :code, :type
 
     def self.client
       @client ||= WorldBank::Client.new
@@ -21,8 +21,9 @@ module WorldBank
     def initialize(values={})
       @raw = values
       @id = values['id']
-      @name = values['value']
+      @name = values['name']
       @code = values['code']
+      @type = 'regions'
     end
   end
 end
