@@ -14,10 +14,15 @@ Usage
   #
   # WorldBank will delegate to the client allowing top level look-ups of their catalog
   #
-  WorldBank.sources               # =>  ['Doing Business', 'Something Else'...] array of 16 sources of information the bank used
+  WorldBank.sources               # =>  ['Doing Business', 'Something Else'...]
+                                  #        array of 16 sources of information the bank used
+
   WorldBank.income_levels         # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
                                   #       hash of 9 income levels the bank assigns
-	WorldBank.lending_types         # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of the 4 lending types
+
+	WorldBank.lending_types         # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of 
+                                  #        the 4 lending types
+
   WorldBank.topics                # =>  the 18 high level topics that indicators are grouped into
   WorldBank.regions               # =>
   WorldBank.countries             # =>  same as Country.all
