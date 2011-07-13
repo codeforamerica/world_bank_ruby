@@ -2,7 +2,7 @@ module WorldBank
 
   class Source
   
-    attr_reader :raw, :id, :name, :description, :url
+    attr_reader :raw, :id, :name, :description, :url, :type
 
     def self.client
       @client ||= WorldBank::Client.new
@@ -24,6 +24,7 @@ module WorldBank
       @name = values['name']
       @description = values['description']
       @url = values['url']
+      @type = 'sources'
     end
   end
 

@@ -2,7 +2,7 @@ module WorldBank
 
   class Topic
   
-    attr_reader :raw, :id, :name, :note
+    attr_reader :raw, :id, :name, :note, :type
   
     def self.client
       @client ||= WorldBank::Client.new
@@ -24,6 +24,7 @@ module WorldBank
       @id = values['id']
       @name = values['value']
       @note = values['sourceNote']
+      @type = 'topics'
     end
     
   end

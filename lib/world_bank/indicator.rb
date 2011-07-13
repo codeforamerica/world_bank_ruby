@@ -2,7 +2,7 @@ module WorldBank
 
   class Indicator
   
-    attr_reader :raw, :id, :name, :source, :note, :organization, :topics
+    attr_reader :raw, :id, :name, :source, :note, :organization, :topics, :type
     def self.client
       @client ||= WorldBank::Client.new
     end
@@ -29,6 +29,7 @@ module WorldBank
       values['topics'].each do |topic| 
         @topics << WorldBank::Topic.new(topic)
       end
+      @type = 'indicators'
     end
   end
 

@@ -2,7 +2,7 @@ module WorldBank
 
   class LendingType
   
-    attr_reader :raw, :id, :name
+    attr_reader :raw, :id, :name, :type
 
     def self.client
       @client ||= WorldBank::Client.new
@@ -23,6 +23,7 @@ module WorldBank
       @raw = values
       @id = values['id']
       @name = values['value']
+      @type = 'lendingTypes'
     end
   end
 end
