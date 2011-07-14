@@ -7,6 +7,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'indicator'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'topic'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'region'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'query'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'data'))
 
 module WorldBank
   class Client

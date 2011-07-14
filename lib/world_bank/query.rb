@@ -1,8 +1,9 @@
 module WorldBank
 
   class Query
-  
-    def initialize(name, id)
+
+    def initialize(name, id, model)
+      @model = model
       @client = WorldBank::Client.new
       @name = name
       @id = id
@@ -17,7 +18,7 @@ module WorldBank
     #
     def dates(date_range)
       if date_range.is_a? String
-      
+
         # assume the user knows what she is doing if passed a string
         @client.query[:params][:date] = date_range
       elsif date_range.is_a? Range
@@ -29,12 +30,12 @@ module WorldBank
     end
 
     def format(format)
-      if format =~ /(json)|(xml)/
-        @client.query[:params][:format] = format
-      elsif format =~ /raw/
-        @raw = true
-      end
+      @client.query[:params][:format] = format
       self
+    end
+
+    def raw
+      @raw = true
     end
 
     def id(id)
@@ -90,24 +91,24 @@ module WorldBank
     def regions(regions)
       parsed = indifferent_number regions
       @client.query[:dirs].unshift parsed
-      @client.query[:params].unshift 'countries' 
+      @client.query[:dirs].unshift 'countries' 
       self
     end
 
     def countries(countries)
       parsed = indifferent_number countries
       @client.query[:dirs].unshift parsed
-      @client.query[:params].unshift 'countries'
+      @client.query[:dirs].unshift 'countries'
       self
     end
-    
+
     def indicators(indicators)
       parsed = indifferent_number indicators
       @client.query[:dirs].unshift parsed
-      @client.query[:params].unshift 'indicators'
+      @client.query[:dirs].unshift 'indicators'
       self
     end
-    
+
     def fetch
       @client.query[:dirs].push @name
       @client.query[:dirs].push @id
@@ -119,11 +120,11 @@ module WorldBank
 
 private
 
-    def parse(results, args)
+    def parse(results)
       if @id =~ /all/
-        results = results[1].map { |result| new result } unless @raw
+        results = results[1].map { |result| @model.new result } unless @raw
       else
-        results = new results[1][0] unless @raw
+        results = @model.new results[1][0] unless @raw
       end
       results
     end
@@ -135,15 +136,15 @@ private
         end.join(';')
       else
         indifferent_type(possibly_multiple_args)
-      end        
+      end
     end
-    
+
     def indifferent_type(arg)
-      if arg.is_a?(WorldBank)
+      if arg.is_a?(::WorldBank)
         arg.id
       else
         arg
-      end        
+      end
     end
   end
 end

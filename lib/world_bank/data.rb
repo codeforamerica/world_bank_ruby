@@ -1,8 +1,8 @@
 module WorldBank
 
-  class Indicator
+  class Data
 
-    attr_reader :raw, :id, :name, :source, :note, :organization, :topics, :type
+    attr_reader :raw
 
     def self.format(arg)
       find('all').format(arg)
@@ -62,16 +62,6 @@ module WorldBank
 
     def initialize(values={})
       @raw = values
-      @id = values['id']
-      @name = values['name']
-      @source = WorldBank::Source.new(values['source'])
-      @note = values['sourceNote']
-      @organization = values['sourceOrganization']
-      @topics = []
-      values['topics'].each do |topic| 
-        @topics << WorldBank::Topic.new(topic)
-      end
-      @type = 'indicators'
     end
   end
 end
