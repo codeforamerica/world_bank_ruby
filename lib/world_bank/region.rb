@@ -4,25 +4,37 @@ module WorldBank
     attr_reader :raw, :id, :name, :code, :type
 
     def self.client
-      @client ||= WorldBank::Client.new
+      @client ||= WorldBank::Client.new({:format => @format})
     end
+    
+    def self.optionally_parse(results, args, many=false)
+      opts = args.last || {}
+      if many
+        results = results[1].map { |result| new result } unless opts[:raw]
+      else
+        results = new results[1][0] unless opts[:raw]
+      end
+      results
+    end    
 
-    def self.all(client)
+    def self.all(*args)
       client.query[:dirs] = ['regions']
-      client.get_query
+      results = client.get_query
+      optionally_parse results, args, :many
     end
 
-    def self.find(id)
+    def self.find(id, *args)
       client.query[:dirs] = ['regions', id.to_s]
+      raise "format: #{@format.inspect} \n\n client: \n #{client.to_yaml}"
       result = client.get_query
-      new(result[1][0])
+      optionally_parse results, args, :many
     end
 
     def initialize(values={})
+      @format = values['format'] || values[:format] || 'json'
       @raw = values
       @id = values['id']
-      @name = values['name']
-      @code = values['code']
+      @name = values['value']
       @type = 'regions'
     end
   end

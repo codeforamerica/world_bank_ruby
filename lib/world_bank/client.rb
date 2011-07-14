@@ -1,10 +1,10 @@
 require 'faraday_middleware'
-require File.expand_path(File.join(File.dirname(__FILE__), '/source'))
-require File.expand_path(File.join(File.dirname(__FILE__), '/income_level'))
-require File.expand_path(File.join(File.dirname(__FILE__), '/lending_type'))
-require File.expand_path(File.join(File.dirname(__FILE__), '/country'))
-require File.expand_path(File.join(File.dirname(__FILE__), '/indicator'))
-require File.expand_path(File.join(File.dirname(__FILE__), '/topic'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'source'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'income_level'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'lending_type'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'country'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'indicator'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'topic'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'region'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'query'))
 
@@ -20,31 +20,31 @@ module WorldBank
     end
 
     def sources
-      WorldBank::Source.all(self)
+      WorldBank::Source.all
     end
 
     def income_levels
-      WorldBank::IncomeLevel.all(self)
+      WorldBank::IncomeLevel.all
     end
 
     def lending_types
-      WorldBank::LendingType.all(self)
+      WorldBank::LendingType.all
     end
 
     def countries
-      WorldBank::Country.all(self)
+      WorldBank::Country.all
     end
 
     def indicators
-      WorldBank::Indicator.all(self)
+      WorldBank::Indicator.all
     end  
 
     def regions
-      WorldBank::Region.all(self)
+      WorldBank::Region.all
     end
 
     def topics
-      WorldBank::Topic.all(self)
+      WorldBank::Topic.all
     end    
 
     def get_query
@@ -59,9 +59,9 @@ module WorldBank
     end
     
     def get(path, headers={})
-      response = connection.get do |request|
-        request.url(path, headers)
-      end
+        response = connection.get do |request|
+          request.url(path, headers)
+        end
       response.body
     end      
 
@@ -74,8 +74,6 @@ module WorldBank
         connection.use Faraday::Response::Mashify
         case @format.to_s.downcase
           when 'json'
-            connection.use Faraday::Response::ParseJson
-          when 'jsonp'
             connection.use Faraday::Response::ParseJson
           when 'xml'
             connection.use Faraday::Response::ParseXml
