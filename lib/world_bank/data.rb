@@ -62,6 +62,12 @@ module WorldBank
 
     def initialize(values={})
       @raw = values
+      @name = values['indicator'].delete('value')
+      @id = values['indicator'].delete('id')
+      @value = values.delete('value')
+      @date = values.delete('date')
+      values.delete('indicator')
+      @others = values
     end
   end
 end

@@ -14,10 +14,9 @@ module WorldBank
 
     attr_accessor :query
 
-    def initialize(options={})
-      @format = options[:format] || 'json'
-      @query = {:params => {}, :dirs => []}
-      @query[:params][:format] = @format
+    def initialize(query, raw)
+      @query = query
+      @raw = raw
     end
 
     def sources
@@ -73,13 +72,15 @@ module WorldBank
         connection.use Faraday::Request::UrlEncoded
         connection.use Faraday::Response::RaiseError
         connection.use Faraday::Response::Mashify
-        case @format.to_s.downcase
-          when 'json'
-            connection.use Faraday::Response::ParseJson
-          when 'xml'
-            connection.use Faraday::Response::ParseXml
-          when 'raw'
-          end
+        unless @raw
+          raise @query.to_yaml
+          case @query[:params][:format].to_s.downcase
+            when 'json'
+              connection.use Faraday::Response::ParseJson
+            when 'xml'
+              connection.use Faraday::Response::ParseXml
+            end
+        end
         connection.adapter(Faraday.default_adapter)
       end
     end  
