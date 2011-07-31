@@ -57,16 +57,16 @@ module WorldBank
       @path += params.join('&')
       get(@path)
     end
-    
+
     def get(path, headers={})
         response = connection.get do |request|
           request.url(path, headers)
         end
       response.body
-    end      
+    end
 
   private
-    
+
     def connection
       Faraday.new(:url => 'http://api.worldbank.org/') do |connection|
         connection.use Faraday::Request::UrlEncoded

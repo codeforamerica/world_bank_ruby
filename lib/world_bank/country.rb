@@ -2,7 +2,7 @@ module WorldBank
 
   class Country
 
-    COUNTRIES = [
+    COUNTRY_ALIASES = [
       ['AW', 'ABW', 'aruba'],
       ['AF', 'AFG', 'afganistan'],
       ['AO', 'AGO', 'angola'],
@@ -255,7 +255,7 @@ module WorldBank
     attr_reader :raw, :name, :iso2_code, :iso3_code, :region, :income_level, :lending_type, :capital, :type
 
     def self.country_aliases
-      COUNTRIES
+      COUNTRY_ALIASES
     end
 
     def self.format(arg)
