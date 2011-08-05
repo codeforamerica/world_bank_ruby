@@ -4,6 +4,14 @@ A wrapper for the World Bank's Development Indicators API sponsored by Code for 
 
 Please see the World Bank's data [[developer's page](http://data.worldbank.org/developers/)] for more info on the data sources.
 
+Does your project or organization use this gem?
+------------------------------------------
+Add it to the [apps](http://github.com/codeforamerica/world_bank_ruby/wiki/apps) wiki!
+
+Continuous Integration
+----------------------
+[![Build Status](https://secure.travis-ci.org/codeforamerica/world_bank_ruby.png)](http://travis-ci.org/codeforamerica/world_bank_ruby)
+
 
 Usage
 -----
@@ -20,7 +28,7 @@ Usage
   WorldBank.income_levels         # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
                                   #       hash of 9 income levels the bank assigns
 
-  WorldBank.lending_types         # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of 
+  WorldBank.lending_types         # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of
                                   #        the 4 lending types
 
   WorldBank.topics                # =>  the 18 high level topics that indicators are grouped into
