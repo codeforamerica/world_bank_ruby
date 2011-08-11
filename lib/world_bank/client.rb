@@ -37,7 +37,7 @@ module WorldBank
 
     def indicators
       WorldBank::Indicator.all
-    end  
+    end
 
     def regions
       WorldBank::Region.all
@@ -45,7 +45,7 @@ module WorldBank
 
     def topics
       WorldBank::Topic.all
-    end    
+    end
 
     def get_query
       @path = @query[:dirs].join('/')
@@ -73,7 +73,6 @@ module WorldBank
         connection.use Faraday::Response::RaiseError
         connection.use Faraday::Response::Mashify
         unless @raw
-          raise @query.to_yaml
           case @query[:params][:format].to_s.downcase
             when 'json'
               connection.use Faraday::Response::ParseJson
@@ -83,6 +82,6 @@ module WorldBank
         end
         connection.adapter(Faraday.default_adapter)
       end
-    end  
+    end
   end
 end

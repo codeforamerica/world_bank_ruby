@@ -4,9 +4,9 @@ module WorldBank
     attr_reader :raw, :id, :name, :code, :type
 
     def self.client
-      @client ||= WorldBank::Client.new({:format => @format})
+      @client ||= WorldBank::Client.new({:dirs => [], :params => {:format => @format}}, false)
     end
-    
+
     def self.optionally_parse(results, args, many=false)
       opts = args.last || {}
       if many
@@ -15,7 +15,7 @@ module WorldBank
         results = new results[1][0] unless opts[:raw]
       end
       results
-    end    
+    end
 
     def self.all(*args)
       client.query[:dirs] = ['regions']
@@ -25,7 +25,6 @@ module WorldBank
 
     def self.find(id, *args)
       client.query[:dirs] = ['regions', id.to_s]
-      raise "format: #{@format.inspect} \n\n client: \n #{client.to_yaml}"
       result = client.get_query
       optionally_parse results, args, :many
     end

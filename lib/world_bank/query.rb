@@ -174,7 +174,7 @@ private
       end
       @id
     end
-    
+
     def indifferent_nums(args)
       parsed = ''
       if args.is_a? Array
@@ -188,11 +188,11 @@ private
       end
       parsed
     end
-    
+
     def normalize_country_id(id)
         id.gsub!(/[ -]/, '_')
         id.downcase!
-    end    
+    end
   end
 end
 
