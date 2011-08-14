@@ -7,7 +7,7 @@ module WorldBank
     def self.client
       @client ||= WorldBank::Client.new
     end
-    
+
     def self.optionally_parse(results, args, many=false)
       opts = args.last || {}
       if many

@@ -8,7 +8,7 @@ module WorldBank
       @id = id
       @lang = false
       @raw = false
-      @query = {:params => {}, :dirs => []}
+      @query = {:params => {:format => :json}, :dirs => []}
     end
 
     #
@@ -126,9 +126,9 @@ private
 
     def parse(results)
       if @id =~ /all/ || @model == WorldBank::Data
-        results = results[1].map { |result| @model.new result } unless @raw
+        results = results[1].map { |result| @model.new result }
       else
-        results = @model.new results[1][0] unless @raw
+        results = @model.new results[1][0]
       end
       results
     end

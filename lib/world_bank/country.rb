@@ -263,7 +263,7 @@ module WorldBank
     end
 
     def self.id(arg)
-      find('all').id(arg)    
+      find('all').id(arg)
     end
 
     def self.most_recent_values(arg)
@@ -350,7 +350,7 @@ private
       end
       @id
     end
-    
+
     def self.normalize_id(id)
       id.gsub!(/[ -]/, '_')
       id.downcase!
