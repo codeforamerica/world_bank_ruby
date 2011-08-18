@@ -38,18 +38,18 @@ module WorldBank
 
     def self.regions(arg)
       find('all').regions(arg)
-    end 
+    end
 
     def self.countries
       find('all').countries(arg)
     end
 
-    def self.indicators(arg)
-      find('all').indicators(arg)
-    end
-
     def self.fetch(arg)
       find(arg).fetch
+    end
+
+    def self.featured
+      find('all').featured_indicators
     end
 
     def self.all

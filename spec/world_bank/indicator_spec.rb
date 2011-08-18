@@ -5,7 +5,7 @@ describe WorldBank::Indicator do
     it 'returns a WorldBank::Indicator' do
       stub_get('indicators/AG.AGR.TRAC.NO?format=json').
         to_return(:status => 200, :body => fixture('indicators_tractors.json'))
-      tractors = WorldBank::Indicator.find('AG.AGR.TRAC.NO')
+      tractors = WorldBank::Indicator.find('AG.AGR.TRAC.NO').fetch
       a_get('indicators/AG.AGR.TRAC.NO?format=json').should have_been_made
       tractors.should be_a WorldBank::Indicator
     end
@@ -13,7 +13,7 @@ describe WorldBank::Indicator do
       before do
         stub_get('indicators/AG.AGR.TRAC.NO?format=json').
           to_return(:status => 200, :body => fixture('indicators_tractors.json'))
-        @tractors = WorldBank::Indicator.find 'AG.AGR.TRAC.NO'
+        @tractors = WorldBank::Indicator.find('AG.AGR.TRAC.NO').fetch
       end
       it 'an id' do
         @tractors.id.should eql 'AG.AGR.TRAC.NO'

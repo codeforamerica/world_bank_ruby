@@ -19,34 +19,6 @@ module WorldBank
       @raw = raw
     end
 
-    def sources
-      WorldBank::Source.all
-    end
-
-    def income_levels
-      WorldBank::IncomeLevel.all
-    end
-
-    def lending_types
-      WorldBank::LendingType.all
-    end
-
-    def countries
-      WorldBank::Country.all
-    end
-
-    def indicators
-      WorldBank::Indicator.all
-    end
-
-    def regions
-      WorldBank::Region.all
-    end
-
-    def topics
-      WorldBank::Topic.all
-    end
-
     def get_query
       @path = @query[:dirs].join('/')
       @path += '?'

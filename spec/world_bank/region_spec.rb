@@ -5,7 +5,7 @@ describe WorldBank::Region do
     it 'returns WorldBank::Region' do
       stub_get('regions/wld?format=json').
         to_return(:status => 200, :body => fixture('regions_world.json'))
-      @so_helpful = WorldBank::Region.find('wld')
+      @so_helpful = WorldBank::Region.find('wld').fetch
       a_get('regions/wld?format=json').should have_been_made
       @so_helpful.should be_a WorldBank::Region
     end
@@ -13,7 +13,7 @@ describe WorldBank::Region do
       before do
         stub_get('regions/wld?format=json').
           to_return(:status => 200, :body => fixture('regions_world.json'))
-        @so_helpful = WorldBank::Region.find('wld')
+        @so_helpful = WorldBank::Region.find('wld').fetch
       end
       it 'an id' do
         @so_helpful.id.should eql ''
