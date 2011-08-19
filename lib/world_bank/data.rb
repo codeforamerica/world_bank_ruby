@@ -11,7 +11,7 @@ module WorldBank
     def self.id(arg)
       find('all').id(arg)
     end
-    
+
     def self.raw
       find('all').raw
     end
@@ -32,24 +32,20 @@ module WorldBank
       find('all').language(arg)
     end
 
-    def self.income_levels(arg)
-      find('all').income_levels(arg)
+    def self.income_level(arg)
+      find('all').income_level(arg)
     end
 
-    def self.lending_types(arg)
-      find('all').lending_types(arg)
+    def self.lending_type(arg)
+      find('all').lending_type(arg)
     end
 
-    def self.regions(arg)
-      find('all').regions(arg)
+    def self.region(arg)
+      find('all').region(arg)
     end 
 
-    def self.countries
-      find('all').countries(arg)
-    end
-
-    def self.indicators(arg)
-      find('all').indicators(arg)
+    def self.country
+      find('all').country(arg)
     end
 
     def self.fetch(arg)

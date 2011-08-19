@@ -1,13 +1,13 @@
 module WorldBank
 
   class DataQuery < Query
-  
+
     def initialize(name, id, model)
       super
       @param_dir = []
       @params_filled = false
     end
-    
+
     def lending_type(lending_type)
       ensure_unconflicting_qualifiers
       parsed = indifferent_number lending_type
@@ -49,9 +49,9 @@ module WorldBank
       @param_dir = ['sources', parsed]
       self
     end
-    
+
     private
-    
+
     def ensure_unconflicting_qualifiers
       if @params_filled
         raise ArgumentError,
