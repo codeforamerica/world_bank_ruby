@@ -11,6 +11,10 @@ module WorldBank
     def self.id(arg)
       find('all').id(arg)
     end
+    
+    def self.raw
+      find('all').raw
+    end
 
     def self.most_recent_values(arg)
       find('all').most_recent_values(arg)
@@ -57,7 +61,7 @@ module WorldBank
     end
 
     def self.find(id)
-      WorldBank::Query.new('indicators', id, self)
+      WorldBank::DataQuery.new('indicators', id, self)
     end
 
     def initialize(values={})

@@ -12,6 +12,7 @@ module WorldBank
       @raw = false
       @new = true
       @query = {:params => {:format => :json}, :dirs => []}
+      @param_dir = []
     end
 
     #
@@ -48,7 +49,7 @@ module WorldBank
     end
 
     #
-    # Most Recent Values param hs two optional params
+    # Most Recent Values param has two optional params
     # Gap fill will specify how many items to add if there isn't enough data for you query
     # Frequency sets how frequent the data sets are...
     # An example is best to explain this:
@@ -102,48 +103,6 @@ module WorldBank
       self
     end
 
-    def lending_types(lending_type)
-      parsed = indifferent_number lending_type
-      @query[:params].merge!({:lendingTypes => parsed})
-      self
-    end
-
-    def income_levels(income_levels)
-      parsed = indifferent_number income_levels
-      @query[:params].merge!({:incomeLevels => parsed})
-      self
-    end
-
-    def regions(regions)
-      parsed = indifferent_number regions
-      @query[:params].merge!({:countries => parsed})
-      self
-    end
-
-    def country(country)
-      parsed = indifferent_type country
-      parsed = ensure_country_id parsed
-      @query[:params].merge!({:countries => parsed})
-      self
-    end
-
-    def indicators(indicators)
-      parsed = indifferent_number indicators
-      @query[:params].merge!({:indicators => parsed})
-      self
-    end
-
-    def featured_indicators
-      @query[:params].merge!({:featured => 1})
-      self
-    end
-
-    def sources(sources)
-      parsed = indifferent_number sources
-      @query[:params].merge!({:sources => parsed})
-      self
-    end
-
     def cycle
       @cycle_results = @pages.nil? ? [] : fetch
       (@pages - @page).times do
@@ -160,13 +119,14 @@ module WorldBank
         @query[:params][:format] ||= :json
         @new = false
       end
+      @query[:dirs] = @param_dir + @query[:dirs] unless @param_dir.empty?
       client = WorldBank::Client.new(@query, @raw)
       results = client.get_query
       results = parse results unless @raw
       results
     end
 
-private
+protected
 
     def parse(results)
       update_fetch_info(results[0])

@@ -282,24 +282,24 @@ module WorldBank
       find('all').language(arg)
     end
 
-    def self.income_levels(arg)
-      find('all').income_levels(arg)
+    def self.income_level(arg)
+      find('all').income_level(arg)
     end
 
-    def self.lending_types(arg)
-      find('all').lending_types(arg)
+    def self.lending_type(arg)
+      find('all').lending_type(arg)
     end
 
-    def self.regions(arg)
-      find('all').regions(arg)
+    def self.region(arg)
+      find('all').region(arg)
     end 
 
-    def self.countries
-      find('all').countries(arg)
+    def self.country
+      find('all').country(arg)
     end
 
     def self.indicators(arg)
-      find('all').indicators(arg)
+      find('all').indicator(arg)
     end
 
     def self.fetch(arg)
@@ -313,7 +313,7 @@ module WorldBank
     def self.find(id)
       id = normalize_id id
       id = ensure_id id unless id =~ /all/
-      WorldBank::Query.new('countries', id, self)
+      WorldBank::ParamQuery.new('countries', id, self)
     end
 
     def initialize(values={})

@@ -8,7 +8,7 @@ module WorldBank
     end
 
     def self.find(id)
-      WorldBank::Query.new('regions', id, self)
+      WorldBank::ParamQuery.new('regions', id, self)
     end
 
     def initialize(values={})
