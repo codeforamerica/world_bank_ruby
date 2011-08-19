@@ -1,0 +1,6 @@
+0.0.1
+	Initial release
+0.9.0
+	Replaced old query builder with a new Query object
+	Factored querying Data into its own class
+	Better test coverage
