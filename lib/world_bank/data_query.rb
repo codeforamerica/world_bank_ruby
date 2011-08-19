@@ -39,9 +39,10 @@ module WorldBank
 
     def indicator(indicators)
       parsed = indifferent_number indicators
-      @param_dir = ['indicators', parsed]
+      @id = parsed
       self
     end
+    alias_method(:find, :indicator)
 
     def source(sources)
       ensure_unconflicting_qualifiers
