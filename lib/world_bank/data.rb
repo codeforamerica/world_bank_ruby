@@ -2,7 +2,7 @@ module WorldBank
 
   class Data
 
-    attr_reader :raw
+    attr_reader :raw, :name, :id, :value, :date, :others
 
     def self.format(arg)
       find('all').format(arg)
