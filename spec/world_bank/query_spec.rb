@@ -79,8 +79,7 @@ describe WorldBank::Query do
       end
       query = WorldBank::Source.all.raw.page(1)
       query.instance_variable_set(:@pages, 3)
-      query.instance_variable_set(:@page, 1)
-      query.cycle.should == ["1", "2", "3"]
+      query.cycle.should == ["2", "3"]
     end
   end
   context 'language' do

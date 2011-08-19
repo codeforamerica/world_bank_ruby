@@ -78,7 +78,7 @@ module WorldBank
         @query[:params][:page] = num
         self
       else
-        @page || @query[:params][:page]
+        @page || @query[:params][:page] || 1
       end
     end
 
@@ -104,8 +104,8 @@ module WorldBank
     end
 
     def cycle
-      @cycle_results = @pages.nil? ? [] : fetch
-      (@pages - @page).times do
+      @cycle_results = @pages.nil? ? fetch : []
+      (@pages - self.page).times do
         @cycle_results += self.next.fetch
       end
       @cycle_results
