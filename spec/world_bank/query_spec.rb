@@ -37,30 +37,12 @@ describe WorldBank::Query do
       WorldBank::Source.all.raw.per_page(50).fetch
       a_get('sources/all?perPage=50&format=json').should have_been_made
     end
-    it 'returns the per page number of the current result set' do
-      require 'json'
-      stub_get('sources/all?format=json').
-        to_return(:status => 200, :body => fixture('sources.json'))
-      query = WorldBank::Source.all.raw
-      result = JSON.parse(query.fetch)
-      query.send(:update_fetch_info, result[0])
-      query.page.should == 1
-    end
   end
   context 'page' do
     it 'adds a page param when passed a value' do
       stub_get('sources/all?page=3&format=json')
       WorldBank::Source.all.raw.page(3).fetch
       a_get('sources/all?page=3&format=json').should have_been_made
-    end
-    it 'returns the page number of the current result set' do
-      require 'json'
-      stub_get('sources/all?format=json').
-        to_return(:status => 200, :body => fixture('sources.json'))
-      query = WorldBank::Source.all.raw
-      result = JSON.parse(query.fetch)
-      query.send(:update_fetch_info, result[0])
-      query.page.should == 1
     end
   end
   context 'next' do

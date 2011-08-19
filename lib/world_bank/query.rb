@@ -92,7 +92,7 @@ module WorldBank
     end
 
     def language(lang)
-      if lang.length == 2
+      if lang.to_s.length == 2
         @lang = lang.to_s.downcase
       else
         @lang = [ ['french', 'fr'],
