@@ -44,7 +44,7 @@ module WorldBank
       find('all').region(arg)
     end 
 
-    def self.country
+    def self.country(arg)
       find('all').country(arg)
     end
 
