@@ -4,8 +4,8 @@ require File.expand_path('../lib/world_bank/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name        = 'world_bank'
   gem.version     = WorldBank::VERSION
-  gem.author      = 'Code for America - DevTools'
-  gem.email       = 'info@codeforamerica.org'
+  gem.author      = ['Code for America - DevTools', 'Justin Stoller']
+  gem.email       = ['info@codeforamerica.org', 'justin.stoller@gmail.com']
   gem.homepage    = 'https://github.com/codeforamerica/world_bank_ruby'
   gem.summary     = %q{A Ruby wrapper around the World Bank's Development Indicators API}
   gem.description = %q{A Ruby wrapper around the World Bank's Development Indicators API}
