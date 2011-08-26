@@ -27,28 +27,27 @@ Usage
 
 	require 'world_bank'
 
-  #
-  # WorldBank will delegate to the client allowing top level look-ups of their catalog
-  #
-  WorldBank::Source.all.fetch     # =>  ['Doing Business', 'Something Else'...]
-                                  #        array of 16 sources of information the bank used
+  WorldBank::Source.all.fetch       # =>  ['Doing Business', 'Something Else'...]
+                                    #        array of 16 sources of information the bank used
 
   WorldBank::IncomeLevel..all.fetch # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
-                                  #       hash of 9 income levels the bank assigns
+                                    #       hash of 9 income levels the bank assigns
 
-  WorldBank::LendingType.all.fetch # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of
-                                  #        the 4 lending types
+  WorldBank::LendingType.all.fetch  # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of
+                                    #        the 4 lending types
 
-  WorldBank::Topic.all.fetch      # =>  the 18 high level topics that indicators are grouped into
-  WorldBank::Region.all.fetch     # =>  returns all the regions the
-World Bank can classify a country as
-  WorldBank::Country.all.fetch    # =>  returns all countries the World
-Bank tracks
-  WorldBank::Indicator.all.fetch  # =>  returns all the indicators the
-World Bank uses
-  WorldBank::Indicator.featured   # =>  returns the featured indicators
-  WorldBank::Topic.all.fetch      # =>  returns all the topics the World
-Bank catagorizes its indicators into
+  WorldBank::Topic.all.fetch        # =>  the 18 high level topics that indicators are grouped into
+
+  WorldBank::Region.all.fetch       # =>  returns all the regions the World Bank can classify a country as
+
+  WorldBank::Country.all.fetch      # =>  returns all countries the World Bank tracks
+
+  WorldBank::Indicator.all.fetch    # =>  returns all the indicators the World Bank uses
+
+  WorldBank::Indicator.featured     # =>  returns the featured indicators
+
+  WorldBank::Topic.all.fetch        # =>  returns all the topics the World Bank catagorizes its indicators into
+
 
 include WorldBank
   #
@@ -83,28 +82,28 @@ include WorldBank
   #
   # Data
   #
-  @results =
-WorldBank::Data.country('brazil').indicator('NY.GDP.MKTP.CD').dates('2000:2008').fetch
+  @results = WorldBank::Data.country('brazil').indicator('NY.GDP.MKTP.CD').dates('2000:2008').fetch
   # returns an array of WorldBank::Data objects that correspond to
-Brazil's Yearly Gross Domestic Product as MarKeT Prices in Current U.S.
-Dollars from 2000 to 2008
+  # Brazil's Yearly Gross Domestic Product as MarKeT Prices in Current U.S.
+  # Dollars from 2000 to 2008
+
   puts @results.first.name
   @results.each {|d| puts d.date + ': $' + d.value }
-#    =>
-#  GDP (current US$)
-#  2008: $1652632229227.61
-#  2007: $1365982651542.37
-#  2006: $1088917279411.76
-#  2005: $882185291700.904
-#  2004: $663760000000
-#  2003: $552469288267.793
-#  2002: $504221228974.035
-#  2001: $553582178386.192
-#  2000: $644701831101.394
-
-The WorldBank::Data can have have methods matching any of the World
-Bank API's
-modifiers (like #dates above) called as class methods or chained in a query.
+  #    =>
+  #  GDP (current US$)
+  #  2008: $1652632229227.61
+  #  2007: $1365982651542.37
+  #  2006: $1088917279411.76
+  #  2005: $882185291700.904
+  #  2004: $663760000000
+  #  2003: $552469288267.793
+  #  2002: $504221228974.035
+  #  2001: $553582178386.192
+  #  2000: $644701831101.394
+  #
+  #  The WorldBank::Data can have have methods matching any of the World Bank API's
+  # modifiers (like #dates above) called as class methods or chained in a query.
+  #
 
 ```
 
