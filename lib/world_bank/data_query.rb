@@ -4,10 +4,15 @@ module WorldBank
 
     def initialize(name, id, model)
       super
-      @param_dir = []
-      @params_filled = false
+      clear_params!
     end
-
+    
+    def fetch
+      results = super
+      clear_params!
+      results
+    end
+    
     def lending_type(lending_type)
       ensure_unconflicting_qualifiers
       parsed = indifferent_number lending_type
@@ -60,5 +65,10 @@ module WorldBank
       end
       @params_filled = true
     end
+    
+    def clear_params!
+      @param_dir = []
+      @params_filled = false      
+    end    
   end
 end
