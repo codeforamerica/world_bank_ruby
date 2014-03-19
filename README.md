@@ -30,7 +30,7 @@ Usage
   WorldBank::Source.all.fetch       # =>  ['Doing Business', 'Something Else'...]
                                     #        array of 16 sources of information the bank used
 
-  WorldBank::IncomeLevel..all.fetch # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
+  WorldBank::IncomeLevel.all.fetch  # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
                                     #       hash of 9 income levels the bank assigns
 
   WorldBank::LendingType.all.fetch  # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of
@@ -130,7 +130,7 @@ Here are some ways *you* can contribute:
 Submitting an Issue
 -------------------
 We use the [GitHub issue
-tracker](https://github.com/codeforamerica/fed_spending_ruby/issues) to track bugs and
+tracker](https://github.com/codeforamerica/world_bank_ruby/issues) to track bugs and
 features. Before submitting a bug report or feature request, check to
 make sure it hasn't already
 been submitted. You can indicate support for an existing issuse by
