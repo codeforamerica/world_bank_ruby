@@ -30,7 +30,7 @@ Usage
   WorldBank::Source.all.fetch       # =>  ['Doing Business', 'Something Else'...]
                                     #        array of 16 sources of information the bank used
 
-  WorldBank::IncomeLevel..all.fetch # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
+  WorldBank::IncomeLevel.all.fetch  # =>  { HIC: 'High Income', HPC: 'Heavily Indebted Poor Countries (HIPC)'...}
                                     #       hash of 9 income levels the bank assigns
 
   WorldBank::LendingType.all.fetch  # =>  [ { id: 'IBD', value: 'IBRD' }... ] an array of key: value pairs of
